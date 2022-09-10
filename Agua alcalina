@@ -1,0 +1,36 @@
+//criacao das funcoes
+
+fClassificacaoPH = (ph) => {//funcao para classificar o ph da agua
+    if (ph <7) {
+        return 'Agua com ph baixo, considerada acida';
+    } else if ( ph == 7){
+        return 'Agua com ph bom, considerada Neutra ';
+    }else {
+        return 'Agua com ph otimo! considerada Alcalina'
+    }
+    
+
+    }
+    
+module.exports = async function (context, req) {//todas informaçoes aqui são para capturar as infors do usuario
+    let nomeCliente = String(res.query.nome);//criacao das variaveis
+    let cidadeCliente = String(res.query.cidade);
+    let phAguaCidade = Number(res.query.phagua);
+
+    if (isNaN(phAguaCidade)) {//verificacao se é numero o que o usuario digitou
+        return context.res.status(400).send('Dados invalidos, por favor digite no formato numeros');
+
+    }
+    let aguaUsuario = nomeCliente, cidadeCliente, phAguaCidade;
+    let classificacaoAgua = fclassificaAgua(ph);
+
+    context.res.json({
+        nome: nomeCliente,
+        cidade: cidadeCliente,
+        phAgua: phAguaCidade,
+        alcalinidade: aguaUsuario,
+        classificacao: classificacaoAgua 
+    });
+
+
+}
