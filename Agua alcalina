@@ -6,22 +6,30 @@ fClassificacaoPH = (ph) => {//funcao para classificar o ph da agua
     } else if ( ph == 7){
         return 'Agua com ph bom, considerada Neutra ';
     }else {
-        return 'Agua com ph otimo! considerada Alcalina'
+        return 'Agua com ph otimo! considerada Alcalina';
     }
     
 
-    }
+    };
     
 module.exports = async function (context, req) {//todas informaçoes aqui são para capturar as infors do usuario
+    // ######### Para os parametros abaixo, utilizar o req no lugar do res 
+    
     let nomeCliente = String(res.query.nome);//criacao das variaveis
     let cidadeCliente = String(res.query.cidade);
     let phAguaCidade = Number(res.query.phagua);
 
     if (isNaN(phAguaCidade)) {//verificacao se é numero o que o usuario digitou
         return context.res.status(400).send('Dados invalidos, por favor digite no formato numeros');
-
     }
+    
+    // ######### Esta variavel só pode receber um unico valor, aqui voce esta tentando passar 3 valores para ela
+    //           Se quiser que ela receba os 3 valores transformala em array => let aguaUsuario = [nomeCliente, cidadeCliente, phAguaCidade];
     let aguaUsuario = nomeCliente, cidadeCliente, phAguaCidade;
+    
+    // ######### Aqui voce esta chamando a funcao com o nome errado, la em cima voce nomeou a funcao como fClassificacaoPH.
+    // ######### Alem disso o parametro que esta passando para ela tambem esta com o nome incorreto... voce nao tem nenhuma variavel com o nome de ph
+    // A chamada da funcao ficaria da seguinte forma => let classificacaoAgua = fClassificacaoPH(phAguaCidade);
     let classificacaoAgua = fclassificaAgua(ph);
 
     context.res.json({
